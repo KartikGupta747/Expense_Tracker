@@ -15,6 +15,7 @@ class User(Base):
     # Relationships: If a user is deleted, their categories and expenses should be too
     categories = relationship("Category", back_populates="owner", cascade="all, delete-orphan")
     expenses = relationship("Expense", back_populates="owner", cascade="all, delete-orphan")
+    budgets = relationship("Budget", back_populates="owner", cascade="all, delete-orphan") 
 
 
 class Category(Base):
@@ -46,3 +47,17 @@ class Expense(Base):
     # Relationships
     owner = relationship("User", back_populates="expenses")
     category = relationship("Category", back_populates="expenses")
+
+class Budget(Base):
+    __tablename__ = "budgets"
+
+    id = Column(Integer, primary_key=True, index=True)
+    monthly_limit = Column(Float, nullable=False)
+    
+    # Foreign Keys
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    category_id = Column(Integer, ForeignKey("categories.id"), nullable=False)
+
+    # Relationships
+    owner = relationship("User", back_populates="budgets")
+    category = relationship("Category")

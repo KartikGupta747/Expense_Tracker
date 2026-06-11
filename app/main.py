@@ -2,8 +2,7 @@ from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import text
 from app.database import get_db
-from app.routers import auth
-from app.routers import auth, categories
+from app.routers import auth, categories, budgets,analytics
 
 app = FastAPI(
     title="Expense Tracker API",
@@ -13,7 +12,8 @@ app = FastAPI(
 
 app.include_router(auth.router)
 app.include_router(categories.router)
-
+app.include_router(budgets.router)
+app.include_router(analytics.router)
 @app.get("/health", tags=["Health Check"])
 def health_check(db: Session = Depends(get_db)):
     """

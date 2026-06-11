@@ -49,3 +49,17 @@ class ExpenseResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+# --- BUDGET SCHEMAS ---
+class BudgetCreate(BaseModel):
+    category_id: int
+    monthly_limit: float
+
+class BudgetResponse(BaseModel):
+    id: int
+    category_id: int
+    user_id: int
+    monthly_limit: float
+
+    class Config:
+        from_attributes = True

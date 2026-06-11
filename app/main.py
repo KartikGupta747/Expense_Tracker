@@ -3,13 +3,16 @@ from sqlalchemy.orm import Session
 from sqlalchemy import text
 from app.database import get_db
 from app.routers import auth
+from app.routers import auth, categories
 
 app = FastAPI(
     title="Expense Tracker API",
     description="Production-grade personal finance backend",
     version="1.0.0"
 )
+
 app.include_router(auth.router)
+app.include_router(categories.router)
 
 @app.get("/health", tags=["Health Check"])
 def health_check(db: Session = Depends(get_db)):

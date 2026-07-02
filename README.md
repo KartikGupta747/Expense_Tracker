@@ -1,4 +1,4 @@
-# Expense Tracker API
+# Expense Tracker API || Finance Analyser
 
 *A production-ready RESTful backend built with FastAPI for personal expense management, featuring JWT authentication, category-wise budgeting, spending analytics, CSV report export, and PostgreSQL persistence.*
 
